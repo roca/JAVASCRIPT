@@ -6,7 +6,6 @@
   <title>Solitaire</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="klondike/game.css">
-  <script src="bower_components/traceur/traceur.js"></script>
   <script src="bower_components/system.js/dist/system.js"></script>
   <script src="lib/system.yuml.js"></script>
 </head>
@@ -22,14 +21,19 @@
 <script src="klondike/piles/remainderPile.js"></script>
 <script src="klondike/piles/tableauPile.js"></script>
 <script src="klondike/piles/foundationPile.js"></script>
-<script src="cards/cards.js"></script>
 
 <script>
 
 	System.config({
-    transpiler: "traceur"
-    /*  Could'nt get this to work
+    transpiler: "traceur",
+    map: {
+       "traceur" : "bower_components/traceur/traceur.js"
+    },
+    traceurOptions: {
+      experimental: true
+    }
 
+    /*  Could'nt get this to work
     transpiler: "babel",
     map : {
       "babel" : "../node_modules/babel-core/index.js"
