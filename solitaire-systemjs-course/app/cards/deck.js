@@ -1,12 +1,21 @@
+//
+// commonjs format
 // var Card = require("./card.js").default;
-
 // module.exports = Deck;
+// function Deck() {
 
-define(["./card.js"], function DeckFactory(Card){
-  
-  Card = Card.default;
+//
+// amd format
+// define(["./card.js"], function DeckFactory(Card){
+//
+//   Card = Card.default;
 
-  function Deck() {
+//
+// es6-module-loader format
+import Card from "./card.js"
+
+export default function Deck() {
+
     this.unShuffled = function unShuffled() {
       return _.chain(Card.ranksInImagesOrder)
         .map(function (rank) {
@@ -29,6 +38,5 @@ define(["./card.js"], function DeckFactory(Card){
     };
   }
 
-  return Deck;
-});
-  
+//   return Deck;
+// });
