@@ -19,11 +19,17 @@ module.exports = function (config) {
       //,"tests/**/*.js"
     ],
 
+    proxies: {
+      "/bower_components" : "/base/app/bower_components",
+      "/node_modules"     : "/base/node_modules"
+    },
+
     jspm: {
       config: "app/config.js",
       packages: "app/bower_components/system.js/dist",
       serveFiles: [
-        "app/**/*.js"
+        "app/**/*.js",
+        "app/bower_components/traceur/traceur.js"
       ],
       loadFiles: [
         "tests/cards/card_test.js"

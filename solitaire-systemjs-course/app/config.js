@@ -1,7 +1,8 @@
 System.config({
   transpiler: "traceur",
+  defaultJSExtensions: true,
   map: {
-     "traceur" : "bower_components/traceur/traceur.js"
+     "traceur" : "./bower_components/traceur/traceur.js"
   },
   traceurOptions: {
     experimental: true
