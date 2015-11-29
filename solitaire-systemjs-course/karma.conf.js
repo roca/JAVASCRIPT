@@ -11,17 +11,14 @@ module.exports = function (config) {
       "app/bower_components/angular/angular.js",
       "app/bower_components/angular-route/angular-route.js",
       "app/bower_components/angular-mocks/angular-mocks.js",
-      "app/bower_components/underscore/underscore.js",
-      "app/klondike/piles/pile.js",
-      "app/klondike/piles/foundationPile.js",
-      "app/klondike/piles/remainderPile.js",
-      "app/klondike/piles/tableauPile.js",
-      //,"tests/**/*.js"
-    ],
+      "app/bower_components/underscore/underscore.js"
+     ],
 
     proxies: {
       "/bower_components" : "/base/app/bower_components",
-      "/node_modules"     : "/base/node_modules"
+      "/node_modules"     : "/base/node_modules",
+      "/base/cards"       : "/base/app/cards",
+      "/base/klondike"    : "/base/app/klondike"
     },
 
     jspm: {
@@ -32,7 +29,8 @@ module.exports = function (config) {
         "app/bower_components/traceur/traceur.js"
       ],
       loadFiles: [
-        "tests/cards/card_test.js"
+        "tests/cards/*.js",
+        "tests/klondike/**/*.js"
       ]
     },
 
