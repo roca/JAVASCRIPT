@@ -1,20 +1,21 @@
 System.config({
-  transpiler: "traceur",
+  baseURL: "/app",
   defaultJSExtensions: true,
-  map: {
-     "traceur" : "./bower_components/traceur/traceur.js",
-     "card"    : "cards/card.js",
-     "deck"    : "cards/deck.js",
-     "pile"    : "klondike/piles/pile.js"
-  },
+  transpiler: "traceur",
   traceurOptions: {
-    experimental: true
-  }
+    "experimental": true
+  },
+  paths: {
+    "github:*": "jspm_packages/github/*",
+    "npm:*": "jspm_packages/npm/*"
+  },
 
-  /*  Could'nt get this to work
-  transpiler: "babel",
-  map : {
-    "babel" : "../node_modules/babel-core/index.js"
+  map: {
+    "card": "cards/card.js",
+    "deck": "cards/deck.js",
+    "pile": "klondike/piles/pile.js",
+    "traceur": "github:jmcriffey/bower-traceur@0.0.92",
+    "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92",
+    "underscore": "npm:underscore@1.8.3"
   }
-  */
-})
+});
