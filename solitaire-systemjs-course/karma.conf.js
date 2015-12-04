@@ -7,23 +7,17 @@ module.exports = function (config) {
 
     basePath: "./",
 
-    files: [
-      "app/bower_components/angular/angular.js",
-      "app/bower_components/angular-route/angular-route.js",
-      "app/bower_components/angular-mocks/angular-mocks.js",
-      "app/bower_components/underscore/underscore.js"
-     ],
+    files: [],
 
     proxies: {
       "/bower_components" : "/base/app/bower_components",
       "/node_modules"     : "/base/node_modules",
       "/base/cards"       : "/base/app/cards",
-      "/base/klondike"    : "/base/app/klondike"
+      "/base/klondike"    : "/base/app/klondike",
+      "/base/jspm_packages"    : "/base/app/jspm_packages"
     },
 
     jspm: {
-      config: "app/config.js",
-      packages: "app/bower_components/system.js/dist",
       serveFiles: [
         "app/**/*.js",
         "app/bower_components/traceur/traceur.js"
