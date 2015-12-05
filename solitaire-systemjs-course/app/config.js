@@ -15,6 +15,7 @@ System.config({
     "angular-route": "github:angular/bower-angular-route@1.4.8",
     "card": "cards/card.js",
     "deck": "cards/deck.js",
+    "ngDraggable": "github:fatlinesofcode/ngDraggable@0.1.8",
     "pile": "klondike/piles/pile.js",
     "traceur": "github:jmcriffey/bower-traceur@0.0.92",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92",
@@ -23,6 +24,9 @@ System.config({
       "angular": "github:angular/bower-angular@1.4.8"
     },
     "github:angular/bower-angular-route@1.4.8": {
+      "angular": "github:angular/bower-angular@1.4.8"
+    },
+    "github:fatlinesofcode/ngDraggable@0.1.8": {
       "angular": "github:angular/bower-angular@1.4.8"
     }
   }
