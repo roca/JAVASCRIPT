@@ -1,6 +1,8 @@
 import angular from 'angular';
 import "angular-route";
 
+import welcomeTemplate from "./welcome.md!";
+
 
 (function () {
   "use strict";
@@ -56,6 +58,12 @@ import "angular-route";
       return {
         restrict: "E",
         templateUrl: "klondike/piles/waste.html"
+      };
+    })
+    .directive("sWelcome", function () {
+      return {
+        restrict: "E",
+        template: welcomeTemplate
       };
     });
 })();

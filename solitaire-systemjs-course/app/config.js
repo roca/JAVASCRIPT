@@ -45,7 +45,8 @@ System.config({
     ],
     "klondike/board.js": [
       "github:angular/bower-angular@1.4.8",
-      "github:angular/bower-angular-route@1.4.8"
+      "github:angular/bower-angular-route@1.4.8",
+      "klondike/welcome.md!lib/markdown-plugin.js"
     ],
     "klondike/scoring.js": [
       "npm:babel-runtime@5.8.34/helpers/create-class",
@@ -107,6 +108,8 @@ System.config({
     "core-js": "npm:core-js@1.2.6",
     "css": "github:systemjs/plugin-css@0.1.20",
     "deck": "cards/deck.js",
+    "marked": "npm:marked@0.3.5",
+    "md": "lib/markdown-plugin.js",
     "ngDraggable": "github:fatlinesofcode/ngDraggable@0.1.8",
     "pile": "klondike/piles/pile.js",
     "traceur": "github:jmcriffey/bower-traceur@0.0.92",
