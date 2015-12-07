@@ -42,7 +42,7 @@ import welcomeTemplate from "./welcome.md!";
     .directive("sCard", function () {
       return {
         restrict: "A",
-        templateUrl: "cards/card.html",
+        templateUrl: "klondike/card.html",
         scope: {
           card: "="
         }

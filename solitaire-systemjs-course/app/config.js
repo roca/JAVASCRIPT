@@ -16,6 +16,12 @@ System.config({
     "npm:*": "jspm_packages/npm/*"
   },
 
+  packages: {
+    "cards": {
+      "main": "index.js"
+    }
+  },
+
   depCache: {
     "app.js": [
       "github:angular/bower-angular@1.4.8",
@@ -38,35 +44,29 @@ System.config({
     "klondike/game.js": [
       "github:angular/bower-angular@1.4.8",
       "npm:underscore@1.8.3",
-      "cards/deck.js",
+      "cards/index.js",
       "klondike/piles/tableauPile.js",
       "klondike/piles/remainderPile.js",
       "klondike/piles/foundationPile.js"
+    ],
+    "klondike/scoring.js": [
+      "npm:babel-runtime@5.8.34/helpers/create-class",
+      "npm:babel-runtime@5.8.34/helpers/class-call-check"
     ],
     "klondike/board.js": [
       "github:angular/bower-angular@1.4.8",
       "github:angular/bower-angular-route@1.4.8",
       "klondike/welcome.md!lib/markdown-plugin.js"
     ],
-    "klondike/scoring.js": [
-      "npm:babel-runtime@5.8.34/helpers/create-class",
-      "npm:babel-runtime@5.8.34/helpers/class-call-check"
-    ],
     "github:fatlinesofcode/ngDraggable@0.1.8/ngDraggable": [
       "github:angular/bower-angular@1.4.8"
     ],
+    "klondike/piles/foundationPile.js": [
+      "npm:babel-runtime@5.8.34/core-js/object/create",
+      "klondike/piles/pile.js"
+    ],
     "npm:underscore@1.8.3": [
       "npm:underscore@1.8.3/underscore"
-    ],
-    "cards/deck.js": [
-      "npm:underscore@1.8.3",
-      "cards/card.js"
-    ],
-    "github:angular/bower-angular-route@1.4.8": [
-      "github:angular/bower-angular-route@1.4.8/angular-route"
-    ],
-    "npm:babel-runtime@5.8.34/helpers/create-class": [
-      "npm:babel-runtime@5.8.34/core-js/object/define-property"
     ],
     "klondike/piles/tableauPile.js": [
       "npm:babel-runtime@5.8.34/core-js/object/create",
@@ -77,23 +77,33 @@ System.config({
       "npm:babel-runtime@5.8.34/core-js/object/create",
       "klondike/piles/pile.js"
     ],
-    "klondike/piles/foundationPile.js": [
-      "npm:babel-runtime@5.8.34/core-js/object/create",
-      "klondike/piles/pile.js"
+    "cards/index.js": [
+      "cards/card.js",
+      "cards/deck.js"
     ],
-    "npm:babel-runtime@5.8.34/core-js/object/define-property": [
-      "npm:core-js@1.2.6/library/fn/object/define-property"
+    "npm:babel-runtime@5.8.34/helpers/create-class": [
+      "npm:babel-runtime@5.8.34/core-js/object/define-property"
+    ],
+    "github:angular/bower-angular-route@1.4.8": [
+      "github:angular/bower-angular-route@1.4.8/angular-route"
     ],
     "npm:babel-runtime@5.8.34/core-js/object/create": [
       "npm:core-js@1.2.6/library/fn/object/create"
     ],
+    "cards/deck.js": [
+      "npm:underscore@1.8.3",
+      "cards/card.js"
+    ],
+    "npm:babel-runtime@5.8.34/core-js/object/define-property": [
+      "npm:core-js@1.2.6/library/fn/object/define-property"
+    ],
     "github:angular/bower-angular-route@1.4.8/angular-route": [
       "github:angular/bower-angular@1.4.8"
     ],
-    "npm:core-js@1.2.6/library/fn/object/define-property": [
+    "npm:core-js@1.2.6/library/fn/object/create": [
       "npm:core-js@1.2.6/library/modules/$"
     ],
-    "npm:core-js@1.2.6/library/fn/object/create": [
+    "npm:core-js@1.2.6/library/fn/object/define-property": [
       "npm:core-js@1.2.6/library/modules/$"
     ]
   },
@@ -104,10 +114,8 @@ System.config({
     "angular-route": "github:angular/bower-angular-route@1.4.8",
     "babel": "npm:babel-core@5.8.34",
     "babel-runtime": "npm:babel-runtime@5.8.34",
-    "card": "cards/card.js",
     "core-js": "npm:core-js@1.2.6",
     "css": "github:systemjs/plugin-css@0.1.20",
-    "deck": "cards/deck.js",
     "marked": "npm:marked@0.3.5",
     "md": "lib/markdown-plugin.js",
     "ngDraggable": "github:fatlinesofcode/ngDraggable@0.1.8",
