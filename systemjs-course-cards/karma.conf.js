@@ -10,22 +10,18 @@ module.exports = function (config) {
     files: [],
 
     proxies: {
-      "/bower_components" : "/base/app/bower_components",
-      "/node_modules"     : "/base/node_modules",
-      "/base/cards"       : "/base/app/cards",
-      "/base/klondike"    : "/base/app/klondike",
-      "/base/jspm_packages"    : "/base/app/jspm_packages",
-      "/base/lib"               : "/base/app/lib"
+      // "/node_modules"     : "/base/node_modules",
+      // "/base/cards"       : "/base/app/cards",
+      // "/base/jspm_packages"    : "/base/app/jspm_packages"
     },
 
     jspm: {
       serveFiles: [
-        "app/**/*.js",
-        "app/**/*.md",
-        "app/bower_components/traceur/traceur.js"
+        "src/*.js",
+        "index.js"
       ],
       loadFiles: [
-        "tests/klondike/**/*.js"
+        "tests/*.js"
       ]
     },
 

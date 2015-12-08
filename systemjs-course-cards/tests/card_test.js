@@ -1,4 +1,4 @@
-import Card from "card";
+import {Card} from "../index.js";
 
 describe("A card", function () {
   "use strict";

@@ -1,18 +1,14 @@
-import Card from "card";
+import {Deck} from "../index.js";
 
-import Deck from "deck";
-
-
-import {module, inject} from "angular-mocks";
 
 describe("A deck of cards", function () {
   "use strict";
 
-  it("should have 52 cards", inject(function () {
+  it("should have 52 cards", function () {
     expect(new Deck().unShuffled().length).toBe(52);
-  }));
+  });
 
-  it("should start with aces", inject(function () {
+  it("should start with aces", function () {
     var cards = new Deck().unShuffled();
 
     expect(cards[0].rank).toEqual("Ace");
@@ -26,9 +22,9 @@ describe("A deck of cards", function () {
 
     expect(cards[3].rank).toEqual("Ace");
     expect(cards[3].suit).toEqual("Diamonds");
-  }));
+  });
 
-  it("should end with twos", inject(function () {
+  it("should end with twos", function () {
     var cards = new Deck().unShuffled();
 
     expect(cards[48].rank).toEqual("2");
@@ -42,14 +38,14 @@ describe("A deck of cards", function () {
 
     expect(cards[51].rank).toEqual("2");
     expect(cards[51].suit).toEqual("Diamonds");
-  }));
+  });
 
-  it("should shuffle", inject(function () {
+  it("should shuffle", function () {
     var unShuffled = new Deck().unShuffled();
 
     var shuffled = new Deck().shuffled();
 
     expect(shuffled).not.toEqual(unShuffled);
-  }));
+  });
 
 });
