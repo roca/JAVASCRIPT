@@ -13,7 +13,8 @@ System.config({
   },
   paths: {
     "github:*": "jspm_packages/github/*",
-    "npm:*": "jspm_packages/npm/*"
+    "npm:*": "jspm_packages/npm/*",
+    "jspm:*": "jspm_packages/jspm/*"
   },
 
   packages: {
@@ -114,6 +115,7 @@ System.config({
     "angular-route": "github:angular/bower-angular-route@1.4.8",
     "babel": "npm:babel-core@5.8.34",
     "babel-runtime": "npm:babel-runtime@5.8.34",
+    "cards": "jspm:cards@dev",
     "core-js": "npm:core-js@1.2.6",
     "css": "github:systemjs/plugin-css@0.1.20",
     "marked": "npm:marked@0.3.5",
@@ -143,6 +145,9 @@ System.config({
     },
     "github:jspm/nodelibs-util@0.1.0": {
       "util": "npm:util@0.10.3"
+    },
+    "jspm:cards@dev": {
+      "underscore": "npm:underscore@1.8.3"
     },
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
