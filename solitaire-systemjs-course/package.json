@@ -20,7 +20,9 @@
     "karma-firefox-launcher": "^0.1.6",
     "karma-jasmine": "^0.3.6",
     "karma-jspm": "^2.0.2",
-    "karma-junit-reporter": "^0.3.4"
+    "karma-junit-reporter": "^0.3.4",
+    "posix": "^4.0.0",
+    "unlimited": "^1.2.0"
   },
   "scripts": {
     "postinstall": "node node_modules/bower/bin/bower install",
@@ -41,6 +43,7 @@
       "css": "github:systemjs/plugin-css@^0.1.20",
       "marked": "npm:marked@^0.3.5",
       "ngDraggable": "github:fatlinesofcode/ngDraggable@^0.1.8",
+      "posix": "npm:posix@^4.0.0",
       "underscore": "npm:underscore@^1.8.3"
     },
     "devDependencies": {

@@ -1,4 +1,7 @@
 /* eslint-env node*/
+var unlimited = require('unlimited')
+unlimited()
+
 
 module.exports = function (config) {
   "use strict";
@@ -10,19 +13,17 @@ module.exports = function (config) {
     files: [],
 
     proxies: {
-      "/bower_components" : "/base/app/bower_components",
       "/node_modules"     : "/base/node_modules",
-      "/base/cards"       : "/base/app/cards",
-      "/base/klondike"    : "/base/app/klondike",
       "/base/jspm_packages"    : "/base/app/jspm_packages",
-      "/base/lib"               : "/base/app/lib"
+      "/base/klondike" : " /base/app/klondike",
+      "/base/lib" : "/base/app/lib"
     },
 
     jspm: {
       serveFiles: [
         "app/**/*.js",
         "app/**/*.md",
-        "app/bower_components/traceur/traceur.js"
+        "node_modules/babel-core/index.js"
       ],
       loadFiles: [
         "tests/klondike/**/*.js"
