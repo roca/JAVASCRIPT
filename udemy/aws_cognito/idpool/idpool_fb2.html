@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Identity Pool Demo</title>
+        <meta charset="UTF-8">
+        <script src="aws-sdk.js"></script>
+        <script src="aws-cognito-sdk.min.js"></script>
+        <script src="amazon-cognito-identity.min.js"></script>
+    </head>
+<body>
+<script>
+
+    // Load the SDK asynchronously
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+ 
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '722908228529717',
+            cookie     : true,  // enable cookies to allow the server to access 
+                                // the session
+            xfbml      : true,  // parse social plugins on this page
+            version    : 'v3.2' // The Graph API version to use for the call
+        });
+
+        // Now that we've initialized the JavaScript SDK, we call 
+        // FB.getLoginStatus().  This function gets the state of the
+        // person visiting this page and can return one of three states to
+        // the callback you provide.  They can be:
+        //
+        // 1. Logged into your app ('connected')
+        // 2. Logged into Facebook, but not your app ('not_authorized')
+        // 3. Not logged into Facebook and can't tell if they are logged into
+        //    your app or not.
+        //
+        // These three cases are handled in the callback function.
+
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+    };
+
+
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+        // Logged into your app and Facebook.
+        getFbTokens(response);
+    } else {
+        // Not logged in
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function login() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+    function getFbTokens(response) {
+        if (response.authResponse) {
+            document.getElementById("fb_auth_token").value = response.authResponse.accessToken;
+            
+            AWS.config.update({region: 'us-east-1'}); // *** Change the region to your region
+            
+            // Add the Facebook access token to the Cognito credentials login map.
+            AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                IdentityPoolId: 'us-east-1:d4b78ea2-29dc-49ea-affd-e8ae12a07f3d',
+                Logins: {
+                    'graph.facebook.com': response.authResponse.accessToken
+                }
+            });
+
+            // Obtain AWS credentials
+            AWS.config.credentials.get(function(){
+                var accessKeyId = AWS.config.credentials.accessKeyId;
+                var secretAccessKey = AWS.config.credentials.secretAccessKey;
+                var sessionToken = AWS.config.credentials.sessionToken;
+
+                document.getElementById("access_key_id").value = accessKeyId;
+                document.getElementById("secret_access_key").value = secretAccessKey;
+                document.getElementById("session_token").value = sessionToken;
+            });
+
+        } else {
+            console.log('There was a problem logging you in.');
+        }
+    }
+</script>
+
+
+<div style="text-align: center">
+    <div style="padding-top:20px; padding-bottom: 50px;">
+        <h3 style="margin-bottom: 30px">Authentication Provider</h3>
+        <div id="login_buttons">
+            <fb:login-button autologoutlink="true" id="login_button" scope="public_profile,email" onlogin="login();">
+            </fb:login-button>
+        </div>
+    </div>
+
+    <hr />
+    
+    <div style="padding-top:20px; padding-bottom: 50px;">
+        <h3 style="margin-bottom: 30px">Authentication Token from Facebook</h3>
+        <textarea id="fb_auth_token" rows="4" cols="150">
+            
+        </textarea>
+    </div>
+
+    <hr />
+
+    <div style="padding-top:20px; padding-bottom: 50px;">
+        <h3 style="margin-bottom: 30px">AWS Credentials from Identity Pool</h3>
+        <textarea id="access_key_id" rows="4" cols="150">
+            
+        </textarea>
+        <textarea id="secret_access_key" rows="4" cols="150">
+            
+        </textarea>
+        <textarea id="session_token" rows="4" cols="150">
+        
+        </textarea>
+    </div>
+
+</div>
+</body>
+</html>
