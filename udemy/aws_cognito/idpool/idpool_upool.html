@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CloudShikshak Cognito User Pool Demo</title>
+        <meta charset="UTF-8">
+        <script src="aws-sdk.js"></script>
+        <script src="aws-cognito-sdk.min.js"></script>
+        <script src="amazon-cognito-identity.min.js"></script>
+    </head>
+<body>
+<script>
+    window.onload = function() {
+        tokens = getToken();
+        // If the token has been given so change the display
+        if (tokens) {
+            document.getElementById('id_token').value = tokens.id_token;
+            document.getElementById('access_token').value = tokens.access_token;
+            AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                IdentityPoolId: 'us-east-1:d4b78ea2-29dc-49ea-affd-e8ae12a07f3d',
+                Logins: {
+                    'cognito-idp.us-east-1.amazonaws.com/us-east-1_OrNuJOhRr': tokens.id_token
+                }
+            });
+
+            // Obtain AWS credentials
+            AWS.config.region = 'us-east-1'; // *** Change the region to your region
+            AWS.config.credentials.get(function(){
+                console.log("Got credentials");
+                console.log(AWS.config.credentials);
+                // Access AWS resources here.
+                var accessKeyId = AWS.config.credentials.accessKeyId;
+                var secretAccessKey = AWS.config.credentials.secretAccessKey;
+                var sessionToken = AWS.config.credentials.sessionToken;
+
+                document.getElementById("access_key_id").value = accessKeyId;
+                document.getElementById("secret_access_key").value = secretAccessKey;
+                document.getElementById("session_token").value = sessionToken;
+            });            
+        } else {
+        }
+    }
+
+    // Parses the URL parameters and returns an object
+    function parseParms(str) {
+        var pieces = str.split("&"), data = {}, i, parts;
+        // process each query pair
+        for (i = 0; i < pieces.length; i++) {
+            parts = pieces[i].split("=");
+            if (parts.length < 2) {
+                parts.push("");
+            }
+            data[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
+        }
+        return data;
+    }
+
+    // Returns the token from the URL hash
+    function getToken() {
+        //substring(1) to remove the '#'
+        hash = parseParms(document.location.hash.substring(1));
+        return hash;
+    }
+
+    
+    function addEmployee() {
+        var params = {
+            TableName :"Employee",
+            Item:{
+                    "id": Math.floor(Math.random() * 100) 
+                }
+        };
+        AWS.config.update({region: 'us-east-1'}); // *** Change the region to your region
+        var docClient = new AWS.DynamoDB.DocumentClient();
+        docClient.put(params, function(err, data) {
+            if (err) {
+                alert(err);
+            } else {
+                alert("Success!");
+            }
+        });
+    }
+</script>
+
+<div style="text-align: center">
+    <h2>Cognito User Pool Tokens</h2>
+    <div style="padding-top:20px; padding-bottom: 50px;">
+        <h3 style="margin-bottom: 30px">ID Token</h3>
+        <textarea id="id_token" rows="4" cols="150">
+            
+        </textarea>
+
+        <h3 style="margin-bottom: 30px">Access Token</h3>
+        <textarea id="access_token" rows="4" cols="150">
+            
+        </textarea>
+    </div>
+
+    <hr />
+
+    <div style="padding-top:20px; padding-bottom: 50px;">
+        <h3 style="margin-bottom: 30px">AWS Credentials from Identity Pool</h3>
+        <textarea id="access_key_id" rows="4" cols="150">
+            
+        </textarea>
+        <textarea id="secret_access_key" rows="4" cols="150">
+            
+        </textarea>
+        <textarea id="session_token" rows="4" cols="150">
+        
+        </textarea>
+    </div>
+
+    <hr />
+
+    <div style="padding-top:20px; padding-bottom: 50px;">
+        <h3 style="margin-bottom: 30px">Access to AWS Resource: Add item in DynamoDB table </h3>
+        <div>
+            <button onclick="addEmployee();">Add Employee</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
